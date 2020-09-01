@@ -10,7 +10,7 @@ public class View extends JFrame {
 	private Model model;
 
 	public View(Model model) throws HeadlessException {
-		super();
+		super("MVC - demo");
 		this.model = model;
 	}
 
