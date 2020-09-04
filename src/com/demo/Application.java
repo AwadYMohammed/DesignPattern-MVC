@@ -7,7 +7,6 @@ import com.demo.model.Model;
 import com.demo.view.View;
 
 
-
 public class Application {
 
 	public static void main(String[] args) {
