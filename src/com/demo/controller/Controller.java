@@ -2,7 +2,7 @@ package com.demo.controller;
 
 import java.sql.SQLException;
 
-import com.demo.model.DAOFactory;
+import com.demo.model.MySQLDAOFactory;
 import com.demo.model.Model;
 import com.demo.model.MySQLPersonDAO;
 import com.demo.model.Person;
@@ -14,7 +14,7 @@ public class Controller implements CreateUserListener {
 	private View view;
 	private Model model;
 	
-	private MySQLPersonDAO personDAO = DAOFactory.getPersonDAO();
+	private MySQLPersonDAO personDAO = MySQLDAOFactory.getPersonDAO();
 	
 	public Controller(View view, Model model) {
 		this.view = view;

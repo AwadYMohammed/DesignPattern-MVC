@@ -13,9 +13,13 @@ import java.util.List;
  * CRUD - Create, retrieve, update, delete
  */
 
-public class MySQLPersonDAO {
+public class MySQLPersonDAO implements PersonDAO {
 
-	public static int addPerson(Person person) throws SQLException {
+	/* (non-Javadoc)
+	 * @see com.caveofprogramming.designpatterns.demo1.model.PersonDAO#addPerson(com.caveofprogramming.designpatterns.demo1.model.Person)
+	 */
+	@Override
+	public int addPerson(Person person) throws SQLException {
 
 		Connection conn = Database.getInstance().getConnection();
 
@@ -32,6 +36,10 @@ public class MySQLPersonDAO {
 		return updated;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.caveofprogramming.designpatterns.demo1.model.PersonDAO#getPerson(int)
+	 */
+	@Override
 	public Person getPerson(int id) throws SQLException {
 		Connection conn = Database.getInstance().getConnection();
 
@@ -57,6 +65,10 @@ public class MySQLPersonDAO {
 		return person;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.caveofprogramming.designpatterns.demo1.model.PersonDAO#getPeople()
+	 */
+	@Override
 	public List<Person> getPeople() throws SQLException {
 
 		List<Person> people = new ArrayList<Person>();
@@ -83,6 +95,10 @@ public class MySQLPersonDAO {
 		return people;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.caveofprogramming.designpatterns.demo1.model.PersonDAO#updatePerson(com.caveofprogramming.designpatterns.demo1.model.Person)
+	 */
+	@Override
 	public int updatePerson(Person person) throws SQLException {
 		Connection conn = Database.getInstance().getConnection();
 
@@ -100,6 +116,10 @@ public class MySQLPersonDAO {
 		return updated;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.caveofprogramming.designpatterns.demo1.model.PersonDAO#deletePerson(int)
+	 */
+	@Override
 	public int deletePerson(int id) throws SQLException {
 		Connection conn = Database.getInstance().getConnection();
 
@@ -115,6 +135,10 @@ public class MySQLPersonDAO {
 		return deleted;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.caveofprogramming.designpatterns.demo1.model.PersonDAO#deleteAll()
+	 */
+	@Override
 	public int deleteAll() throws SQLException {
 		Connection conn = Database.getInstance().getConnection();
 
