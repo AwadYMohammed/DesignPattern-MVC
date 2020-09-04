@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class Database {
 	
 	private static Database instance = new Database();
@@ -33,6 +34,11 @@ public class Database {
 	/*
 	 * Add whatever methods you like to your singleton class.
 	 */
+	
+	public Connection getConnection() {
+		return con;
+	}
+	
 	public void connect() throws Exception {
 		if (con != null)
 			return;
@@ -45,7 +51,7 @@ public class Database {
 
 		String url = String.format("jdbc:mysql://localhost:%d/patterns", 3306);
 
-		con = DriverManager.getConnection(url, "squiffy", "letmein");
+		con = DriverManager.getConnection(url, "root", "letmein");
 	}
 	
 	public void disconnect() {

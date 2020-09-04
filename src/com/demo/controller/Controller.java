@@ -11,7 +11,7 @@ public class Controller implements CreateUserListener {
 	private View view;
 	private Model model;
 	
-	private PersonDAO personDAO = new PersonDAO();
+	private PersonDAO personDAO = DAOFactory.getPersonDAO();
 	
 	public Controller(View view, Model model) {
 		this.view = view;

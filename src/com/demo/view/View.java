@@ -26,7 +26,7 @@ public class View extends JFrame implements ActionListener {
 	private JPasswordField passField;
 	private JPasswordField repeatPassField;
 
-	private LoginListener loginListener;
+	private CreateUserListener loginListener;
 
 	public View(Model model) {
 		super("MVC Demo");
@@ -156,13 +156,13 @@ public class View extends JFrame implements ActionListener {
 		}
 	}
 
-	public void setLoginListener(LoginListener loginListener) {
+	public void setLoginListener(CreateUserListener loginListener) {
 		this.loginListener = loginListener;
 	}
 
 	public void fireLoginEvent(CreateUserEvent event) {
 		if (loginListener != null) {
-			loginListener.loginPerformed(event);
+			loginListener.userCreated(event);
 		}
 	}
 
