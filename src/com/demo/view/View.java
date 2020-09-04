@@ -2,61 +2,91 @@ package com.demo.view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
+import com.demo.controller.Controller;
 import com.demo.model.Model;
 
 public class View extends JFrame implements ActionListener {
 	
 	private Model model;
-	private JButton helloButton;
-	private JButton goodbyeButton;
+	private JButton okButton;
+	private JTextField nameField;
+	private JPasswordField passField;
+	
+	private LoginListener loginListener;
 
 	public View(Model model) {
 		super("MVC Demo");
 		
 		this.model = model;
 		
-		helloButton = new JButton("Hello!");
-		goodbyeButton = new JButton("Goodbye!");
+		nameField = new JTextField(10);
+		passField = new JPasswordField(10);
+		okButton = new JButton("OK");
 		
 		setLayout(new GridBagLayout());
 		
 		GridBagConstraints gc = new GridBagConstraints();
-		gc.anchor = GridBagConstraints.CENTER;
+		gc.anchor = GridBagConstraints.LAST_LINE_END;
 		gc.gridx=1;
 		gc.gridy=1;
 		gc.weightx=1;
 		gc.weighty=1;
+		gc.insets = new Insets(100, 0, 0, 10);
 		gc.fill=GridBagConstraints.NONE;
 		
-		add(helloButton, gc);
+		add(new JLabel("Name: "), gc);
 		
-		gc.anchor = GridBagConstraints.CENTER;
+		gc.anchor = GridBagConstraints.LAST_LINE_START;
+		gc.gridx=2;
+		gc.gridy=1;
+		gc.weightx=1;
+		gc.weighty=1;
+		gc.insets = new Insets(100, 0, 0, 0);
+		gc.fill=GridBagConstraints.NONE;
+		
+		add(nameField, gc);
+		
+		gc.anchor = GridBagConstraints.LINE_END;
 		gc.gridx=1;
 		gc.gridy=2;
 		gc.weightx=1;
 		gc.weighty=1;
+		gc.insets = new Insets(0, 0, 0, 10);
 		gc.fill=GridBagConstraints.NONE;
 		
-		add(goodbyeButton, gc);
+		add(new JLabel("Password: "), gc);
 		
-		helloButton.addActionListener(this);
-		goodbyeButton.addActionListener(this);
+		gc.anchor = GridBagConstraints.LINE_START;
+		gc.gridx=2;
+		gc.gridy=2;
+		gc.weightx=1;
+		gc.weighty=1;
+		gc.insets = new Insets(0, 0, 0, 0);
+		gc.fill=GridBagConstraints.NONE;
 		
-		goodbyeButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Sorry to see you go.");
-			}
-			
-		});
-	
+		add(passField, gc);
+		
+		gc.anchor = GridBagConstraints.FIRST_LINE_START;
+		gc.gridx=2;
+		gc.gridy=3;
+		gc.weightx=1;
+		gc.weighty=100;
+		gc.fill=GridBagConstraints.NONE;
+		
+		add(okButton, gc);
+		
+		okButton.addActionListener(this);
+		
 		setSize(600, 500);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
@@ -65,17 +95,20 @@ public class View extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		JButton source = (JButton)e.getSource();
+		String password = new String(passField.getPassword());
+		String name = nameField.getText();
 		
-		if(source == helloButton) {
-			System.out.println("Hello there!");
-		}
-		else {
-			System.out.println("Some other button.");
-		}
-		
+		fireLoginEvent(new LoginFormEvent(name, password));
+	}
+
+	public void setLoginListener(LoginListener loginListener) {
+		this.loginListener = loginListener;
 	}
 	
-	
+	public void fireLoginEvent(LoginFormEvent event) {
+		if(loginListener != null) {
+			loginListener.loginPerformed(event);
+		}
+	}
 
 }
