@@ -149,7 +149,7 @@ public class View extends JFrame implements ActionListener {
 		if (password.equals(repeat)) {
 			String name = nameField.getText();
 
-			fireLoginEvent(new LoginFormEvent(name, password));
+			fireLoginEvent(new CreateUserEvent(name, password));
 		} else {
 			JOptionPane.showMessageDialog(this, "Passwords do not match.",
 					"Error", JOptionPane.WARNING_MESSAGE);
@@ -160,7 +160,7 @@ public class View extends JFrame implements ActionListener {
 		this.loginListener = loginListener;
 	}
 
-	public void fireLoginEvent(LoginFormEvent event) {
+	public void fireLoginEvent(CreateUserEvent event) {
 		if (loginListener != null) {
 			loginListener.loginPerformed(event);
 		}
