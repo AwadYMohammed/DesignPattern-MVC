@@ -13,9 +13,9 @@ import java.util.List;
  * CRUD - Create, retrieve, update, delete
  */
 
-public class PersonDAO {
+public class MySQLPersonDAO {
 
-	public int addPerson(Person person) throws SQLException {
+	public static int addPerson(Person person) throws SQLException {
 
 		Connection conn = Database.getInstance().getConnection();
 

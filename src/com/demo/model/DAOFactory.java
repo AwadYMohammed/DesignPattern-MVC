@@ -1,11 +1,11 @@
 package com.demo.model;
 
 public class DAOFactory {
-	public static PersonDAO getPersonDAO() {
-		return new PersonDAO();
+	public static MySQLPersonDAO getPersonDAO() {
+		return new MySQLPersonDAO();
 	}
 	
-	public static LogDAO getLogDAO() {
-		return new LogDAO();
+	public static MySQLLogDAO getLogDAO() {
+		return new MySQLLogDAO();
 	}
 }

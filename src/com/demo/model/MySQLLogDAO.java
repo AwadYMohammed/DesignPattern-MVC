@@ -2,7 +2,7 @@ package com.demo.model;
 
 import java.util.List;
 
-public class LogDAO {
+public class MySQLLogDAO {
 	
 	public void addEntry(String message) {
 		// Not implemented.
